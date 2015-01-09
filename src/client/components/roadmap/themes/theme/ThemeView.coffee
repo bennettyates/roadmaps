@@ -29,9 +29,10 @@ define [
 		handleEdit: (e) ->
 			e.stopPropagation()
 			modal = new ModalView
-				title: "Edit \"" + (@model.get 'name') + '\"...'
+				title: "Settings"
 			app.modal.show modal
-			modal.body.show new EditThemeView()
+			modal.body.show new EditThemeView
+				theme: @model
 
 		handleThemeSelection: (index) =>
 			myIndex = @$el.index()

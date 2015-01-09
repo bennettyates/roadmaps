@@ -5,7 +5,7 @@ require.config
 		"jquery": "lib/jquery/dist/jquery.min"
 		"handlebars": "lib/handlebars/handlebars"
 		"backbone": "lib/backbone/backbone"
-		'backbone.stickit': 'lib/backbone.stickit/backbone.stickit'
+		'stickit': 'lib/backbone.stickit/backbone.stickit'
 		'backbone.relational': 'lib/backbone.relational/backbone-relational'
 		"marionette": "lib/backbone.marionette/lib/backbone.marionette"
 		"moment": "lib/momentjs/moment"
@@ -19,7 +19,7 @@ require.config
 		"backbone":
 			deps: ["underscore", "jquery"]
 			exports: "Backbone"
-		'backbone.stickit': ['backbone']
+		'stickit': ['backbone']
 		'backbone.relational': ['backbone']
 		"marionette":
 			deps: ["backbone"]

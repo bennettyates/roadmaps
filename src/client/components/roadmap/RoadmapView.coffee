@@ -1,6 +1,6 @@
 define [
 	'marionette', './themes/themeList/ThemeListView.coffee', './grid/GridView.coffee', './roadmap.hbs', 
-	'backbone.stickit', "css!./roadmap.sass"
+	'stickit', "css!./roadmap.sass"
 ], (
 	Marionette, ThemeListView, GridView,  tpl
 ) ->
