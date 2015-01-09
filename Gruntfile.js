@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
 
+	// really only needed first time you run to create a dir for mongo
+	grunt.file.mkdir('data/db');
+
 	grunt.initConfig({
 		// express: {
 		// 	server: {
@@ -148,5 +151,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('compile', ['clean', 'copy', 'coffee:all', 'sass:all', 'handlebars:all']);
 	grunt.registerTask('mongo', ['shell:mongo']);
 	grunt.registerTask('default', ['compile', 'shell:server', 'watch']);
-	// grunt.registerTask('default', ['compile', 'shell:mongodb', 'express:server', 'express-keepalive']);
+
 };
