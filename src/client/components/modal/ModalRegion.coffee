@@ -21,3 +21,5 @@ define ['marionette'], (Marionette) ->
 
 		hideModal: ->
 			@$el.modal 'hide'
+			@empty()
+			

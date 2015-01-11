@@ -5,11 +5,33 @@
 	padding: 10px
 	margin: 0 0 5 0
 
-	.btn-group
-		float: right
-
 	[data-action=edit]
 		cursor: pointer
 
 	&.selected
+		background-color: #F0F0F0
+
+	.name
+		font-size: 18px
+
+	.point
+		display: inline-block
+		width: 15px
+		height: 15px
+
+	.settings
+		vertical-align: top
+		margin-left: 10px
+		font-size: 20px
+
+	&:nth-child(1) .point
+		background-color: red
+
+	&:nth-child(2) .point
+		background-color: green
+
+	&:nth-child(3) .point
 		background-color: yellow
+
+	&:nth-child(4) .point
+		background-color: blue

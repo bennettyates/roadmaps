@@ -1,5 +1,5 @@
 define [
-	'marionette', './RoadmapItemView.coffee', 'models/Roadmap.coffee', './roadmapList.hbs'
+	'marionette', './RoadmapItemView.coffee', 'models/Roadmap.coffee', './roadmapList.hbs', 'css!./roadmapList.sass'
 ], (
 	Marionette, RoadmapItemView, Roadmap, tpl
 ) ->
@@ -7,8 +7,9 @@ define [
 	class RoadmapListView extends Marionette.CompositeView
 
 		template: tpl
-		childViewContainer: '.roadmap-list'
+		childViewContainer: '.roadmaps'
 		childView: RoadmapItemView,
+		className: 'roadmap-list'
 
 		events:
 			'click [data-action=add]': 'handleAdd'

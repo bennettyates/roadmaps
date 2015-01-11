@@ -1,42 +1,40 @@
 define [
-	'marionette', 'components/modal/ModalView.coffee', '../editTheme/EditThemeView.coffee', './theme.hbs', 'css!./theme.sass'
+	'marionette', '../editTheme/EditThemeView.coffee', './theme.hbs', 'css!./theme.sass'
 ], (
-	Marionette, ModalView, EditThemeView, tpl
+	Marionette, EditThemeView, tpl
 ) ->
 
 	class ThemeView extends Marionette.ItemView
 		template: tpl
-		className: 'theme'
+		className: -> "theme"
 
 		initialize: (options) ->
-			@themesCollection = options.themesCollection
 			app.vent.on 'theme:selected', @handleThemeSelection
+			@listenTo @model, 'change', => @render()
 
 		events:
-			'click': 'handleClick'
 			'click [data-action=edit]': 'handleEdit'
-			'click [data-action=delete]': 'handleDelete'
+			'click': 'handleClick'
 
-		handleDelete: (e) ->
-			e.stopPropagation()
-			@model.destroy()
-
+		# broadcast theme selection for all
 		handleClick: (e) ->
+			console.log 'clicked', e
 			e.stopPropagation()
 			$target = $(e.target).closest('.theme')
 			app.vent.trigger 'theme:selected', $target.index()
 
+		# open edit modal
 		handleEdit: (e) ->
 			e.stopPropagation()
-			modal = new ModalView
-				title: "Settings"
-			app.modal.show modal
-			modal.body.show new EditThemeView
+			app.modal.show new EditThemeView
 				theme: @model
 
+		# This is a broadcast event that may have come from any theme.
+		# If it was me then toggle otherwise turn off
 		handleThemeSelection: (index) =>
 			myIndex = @$el.index()
+			console.log index, myIndex
 			if myIndex is index
-				@$el.addClass 'selected'
+				@$el.toggleClass 'selected'
 			else
 				@$el.removeClass 'selected'

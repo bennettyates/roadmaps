@@ -34,13 +34,14 @@ require.config
 			"text": "lib/requirejs-text/text"
 
 require [
-	"backbone", "marionette", "app/AppRouter.coffee", "components/modal/ModalRegion.coffee",
+	"backbone", "marionette", "handlebars", 
+	"app/AppRouter.coffee", "components/modal/ModalRegion.coffee",
 	"bootstrap",
 	"css!lib/bootstrap/dist/css/bootstrap",
 	"css!lib/fontawesome/css/font-awesome",
 	"css!/app/app.sass"
 ], (
-	Backbone, Marionette, AppRouter, ModalRegion
+	Backbone, Marionette, Handlebars, AppRouter, ModalRegion
 ) ->
 
 	window.app = new Marionette.Application()
@@ -54,6 +55,12 @@ require [
 		app.router.navigate "#roadmap/#{id}", { trigger: true, replace: false }
 	app.vent.on "list-roadmaps", () ->
 		app.router.navigate "#", { trigger: true, replace: false }
+
+	Handlebars.registerHelper "repeat", (n, block) ->
+		buffer = ""
+		for i in [0...n]
+			buffer += block.fn(i)
+		buffer
 
 	app.start();
 	Backbone.history.start();

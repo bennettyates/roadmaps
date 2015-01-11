@@ -10,3 +10,6 @@ define ['backbone', './Theme.coffee', 'backbone.relational'], (Backbone, Theme) 
 			reverseRelation:
 				key: 'roadmap'
 		]
+
+	# not sure if this is needed backbone-relational has some coffeescript weirdness
+	Roadmap.setup()

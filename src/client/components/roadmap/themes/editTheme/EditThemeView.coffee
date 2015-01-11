@@ -6,34 +6,31 @@ define [
 
 	class EditThemeView extends Marionette.ItemView
 		template: tpl
-		className: "edit-theme"
+		className: "edit-theme modal-dialog"
 
 		bindings:
 			'[name=name]': 'name'
 			'[name=size]': 'size'
 
 		events:
-			'submit form': 'handleSave'
+			'click [data-action=save]': 'handleSave'
 			'click [data-action=delete]': 'handleDelete'
 
 		initialize: (options) ->
 			@theme = options.theme
+			# copy to new model so we can cancel
 			@model = new Backbone.Model
 				name: @theme.get 'name'
 				size: @theme.get 'size'
 
 		onShow: ->
 			@stickit()
+			@$el.find('[name=name]').focus()
 
 		handleSave: (e) ->
-			console.log e
-			e.stopPropagation()
 			@theme.set @model.toJSON()
-			console.log @theme.toJSON()
-			# app.modal.reset()
+			true
 
-		handleDelete: ->
-			console.log e
-			e.stopPropagation()
-			@theme.destory()
-			app.modal.reset()
+		handleDelete: (e) ->
+			@theme.destroy()
+			true

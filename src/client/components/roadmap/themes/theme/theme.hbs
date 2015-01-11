@@ -1,4 +1,11 @@
 <span class="name">{{name}}</span>
-<div class="btn-group" role="toolbar">
-	<i data-action="edit" class="fa fa-gear" title="Edit"></i></button>
+<div class="pull-right">
+	<span class="points">
+		{{#repeat size}}
+			<span class="point"></span>
+		{{/repeat}}
+	</span>
+	<span class="settings" title="Settings" data-action="edit" >
+		<i class="fa fa-gear"></i>
+	</span>
 </div>

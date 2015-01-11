@@ -1,6 +1,6 @@
 define [
 	'marionette', './themes/themeList/ThemeListView.coffee', './grid/GridView.coffee', './roadmap.hbs', 
-	'stickit', "css!./roadmap.sass"
+	"css!./roadmap.sass"
 ], (
 	Marionette, ThemeListView, GridView,  tpl
 ) ->
@@ -13,16 +13,13 @@ define [
 			grid: '#grid-region'
 			themes: '#theme-region'
 
-		bindings:
-			'[name=name]': 'name'
-
-		# save every change
 		initialize: (options) ->
-			@listenTo @model, 'change add:themes remove:themes change:themes"', (e) => 
-				@model.save()
+			# after first sync save every change
+			@listenToOnce @model, 'sync', ->
+				@listenTo @model, 'change add:themes remove:themes change:themes"', (context) => 
+					@model.save()
 
 		onShow: ->
-			@stickit()
 			@grid.show new GridView
 				roadmap: @model
 			@themes.show new ThemeListView
