@@ -1,7 +1,9 @@
 define [
-	'marionette', 'components/roadmap/themes/theme/ThemeView.coffee', './themeList.hbs', 'css!./themeList.sass'
+	'marionette', 
+	'../theme/ThemeView.coffee', '../editTheme/EditThemeView.coffee', 'models/Theme.coffee',
+	'./themeList.hbs', 'css!./themeList.sass'
 ], (
-	Marionette, ThemeView, tpl
+	Marionette, ThemeView, EditThemeView, Theme, tpl
 ) ->
 
 	class ThemeListView extends Marionette.CompositeView
@@ -19,5 +21,10 @@ define [
 
 		handleAdd: () ->
 			console.log 'add handler'
-			@collection.add({ name: 'New Theme' })
+			theme = new Theme
+				name: 'New Theme', 
+				size: 0
+			@collection.add(theme)
+			app.modal.show new EditThemeView
+				theme: theme
 

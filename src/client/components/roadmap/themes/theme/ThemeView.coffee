@@ -18,7 +18,6 @@ define [
 
 		# broadcast theme selection for all
 		handleClick: (e) ->
-			console.log 'clicked', e
 			e.stopPropagation()
 			$target = $(e.target).closest('.theme')
 			app.vent.trigger 'theme:selected', $target.index()
@@ -33,7 +32,6 @@ define [
 		# If it was me then toggle otherwise turn off
 		handleThemeSelection: (index) =>
 			myIndex = @$el.index()
-			console.log index, myIndex
 			if myIndex is index
 				@$el.toggleClass 'selected'
 			else
