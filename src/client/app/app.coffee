@@ -21,10 +21,11 @@ define [
 	app.vent.on "list-roadmaps", () ->
 		app.router.navigate "#", { trigger: true, replace: false }
 
-	Handlebars.registerHelper "repeat", (n, block) ->
+	Handlebars.registerHelper "repeat", (n, options) ->
+		console.log "repeat", n
 		buffer = ""
 		for i in [0...n]
-			buffer += block.fn(i)
+			buffer = buffer + options.fn(this)
 		buffer
 
 	app.start();

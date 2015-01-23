@@ -1,1 +1,21 @@
-GRID
+<section>
+	<div>weeks: {{weeks}}</div>
+	<div>resources: {{resources}}</div>
+	<table>
+	{{#repeat weeks}}
+		<tr>
+		{{#repeat resources}}
+			<td>X</td>
+		{{/repeat}}
+		</tr>
+	{{/repeat}}
+	</table>
+</section>
+<footer>
+	<div>
+		<span data-action="add-resource"><i class="fa fa-plus"></i>&nbsp;Add new resource</span>
+	</div>
+	<div>
+		<span data-action="add-resource"><i class="fa fa-plus"></i>&nbsp;Add more weeks</span>
+	</div>
+</footer>
